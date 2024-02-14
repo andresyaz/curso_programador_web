@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Andres Yazyi CV</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <header><img src="img/logoWEBAndresYaz2.png" alt="AndresYaz Media Solutions Developer" /></header>
-    <nav><h1>Andrés Yazyi CV </h1> </nav>
+    <nav><h1>Andres Yazyi CV </h1> </nav>
 <section>
 
     <h2>Formación Formal</h2>
@@ -21,21 +22,55 @@
         
     <p>Actualmente me desempeño como diseñador web y programador de aplicaciones en el área TICs de la  UTN Facultad Regional Bahía Blanca</p>
 </section>
-<aside><p>&nbsp;</p><img src="img/andresyaz2021.jpg" alt="AndresYaz Media Solutions Developer" /><p>&nbsp;</p></aside>
-<hr>
-<p>&nbsp;</p>
+<aside>  
+    <img src="img/andresyaz2021.jpg" alt="AndresYaz Media Solutions Developer" class="perfil" styo/> 
+</aside>
+ 
+ 
 <footer>
     <h3>Contacto</h3>
-    <div id="contact">  
+    <div>  
 <p> Puede contactarme por el completando el siguiente formulario</p>
-<form action="#" method="POST">
-<label for="name">Nombre: </label><input type="text" name="name" />
-<label for="email">Email: </label><input type="text" name="email" />
-<label for="phone">Telefono: </label><input type="text" name="phone" />
-<label for="subject">Asunto: </label><input type="text" name="subject" />
-<input type="submit" name="submit" />
+ 
+<div class="form-container">
+    
+    <form class="form">
+        <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input
+                type="text"
+                class="form-input"
+                placeholder="Ingrese su nombre"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Correo</label>
+            <input
+                type="email"
+                class="form-input"
+                placeholder="Ingrese su correo"
+            />
+        </div>
+        <div class="form-group">
+            <label class="form-label">Mensaje</label>
+            <textarea name="textarea" rows="10" cols="50" placeholder="Escriba su mensaje"  class="form-input"></textarea>
+        </div>
 
-</form>
+        
+         
+        <div class="form-group">
+            <input
+                type="submit"
+                class="form-submit"
+                value="Enviar"
+            >
+        </div>
+    </form>
+</div>
+
+
+
+
 </div>
 
 
