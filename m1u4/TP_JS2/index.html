@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAME EL MAYOR</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="px-4 py-5 my-5 text-center">
+        <img class="d-block mx-auto mb-4" src="img/klipartz.com.png" width="100px" height="100px" alt="Dame el mayor">
+        <h1 class="display-5 fw-bold text-body-emphasis">TE DEVUELVO EL MAYOR</h1> 
+        <div class="col-lg-5 mx-auto">
+          <p class="lead mb-4">Anda agregando valores y te encuentro el mayor.</p>
+          <div class="d-grid gap-2 d-sm-flex justify-content-sm-center alert alert-dismissible alert-light">
+            
+           
+            <input type="text" id="valor" placeholder="Ingrese un valor" class="form-control">
+            <button onclick="agregarValor()" class="btn btn-primary">Agregar</button>
+            <button onclick="Borrar()" class="btn btn-danger">Borrar</button>
+          </div>
+
+          <div id="valores" class="row alert alert-dismissible alert-info"></div>
+          <div id="mayor" class="row alert alert-dismissible alert-warning"></div>
+           
+
+        </div>
+      </div>
+   </div>
+
+<footer>Powered by  <a href="https://www.andresyaz.com.ar"> AndresYaz</a></footer>
+<script>
+
+let valores = []; // define el arreglo de datos contenedor de los valores
+
+var divValor = document.getElementById("valores");
+var divMayor = document.getElementById("mayor");
+
+//funcion principal
+function agregarValor() {
+    let valor = document.getElementById("valor").value; //obtiene el valor del campo de entrada
+    
+    if (!isNaN(valor) && valor !== "") { // si es distinto de nulo y no es vacio
+        valores.push(parseFloat(valor)); // con push lo agrega al arreglo y con parseFloat restringe solo a valores enteros.
+        //console.log(valores);
+        
+        // Imprime en la div valores para ir mostrando lo que se ingreso
+       
+        divValor.style.display = "block";
+        document.getElementById("valores").innerHTML = "Valores ingresados: " + valores.join(", ");
+       
+        // Ejecuta la funcion de busqueda de mayor
+        mostrarMayor(valores);
+
+    } else {
+        alert("Por favor, ingrese un número válido.");
+    }
+   
+    document.getElementById("valor").value = ""; // Vuelve a limpiar el campo para ingresar el proximo valor
+}
+
+
+// Funcion de busqueda de mayor valor
+function mostrarMayor(valores) {
+   
+      let mayor = valores[0];
+      for (let i = 1; i < valores.length; i++) {
+        if (valores[i] > mayor) {
+            mayor = valores[i];
+        }
+    }
+
+    //let mayor = Math.max(...valores); con esta funcion hace lo mismo que con el ciclo for
+   
+    //Imprime el resultado final
+  
+    divMayor.style.display = "block";
+    document.getElementById("mayor").innerHTML = "El mayor valor es: " + mayor;
+}
+
+
+function Borrar() { 
+  valores = [];
+  divValor.style.display = "none";
+  divMayor.style.display = "none";
+ }
+
+</script>
+</body>
+</html>
