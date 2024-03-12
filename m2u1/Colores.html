@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMBIO DE COLOR DE FONDO</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+  .contenedor {
+      display: flex;
+  }
+
+  .color-box {
+      height: 100px;
+      width: 100px;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 10px;
+      color: aliceblue; 
+      border: solid 1px white;
+      float:left;
+      cursor:pointer;
+      
+  }
+</style>
+</head>
+<body>
+  
+  
+   
+
+<footer>Powered by <a href="https://www.andresyaz.com.ar"> AndresYaz</a></footer>
+<script>
+
+
+  var colorFondo='red'; //color inicial
+  addElemento(colorFondo);
+  var colorFondo='green';
+  addElemento(colorFondo);
+  var colorFondo='blue';
+  addElemento(colorFondo);
+
+  
+  function addElemento(colorFondo) {
+    // crea una nueva div
+    const newDiv = document.createElement("div");
+    
+    newDiv.style.backgroundColor= colorFondo;
+ 
+    newDiv.classList.add('color-box'); //agrega la clase caja a cada div
+
+    // contenido de la div
+    const newContent = document.createTextNode(" Pulse Aqui! ");
+  
+    // agrega el nodo contenido a la div
+    newDiv.appendChild(newContent);
+    
+    document.body.appendChild(newDiv);
+  } 
+  
+ 
+  document.addEventListener("DOMContentLoaded", function() {
+      const colorBoxes = document.querySelectorAll(".color-box");
+
+      colorBoxes.forEach(function(box) {
+          box.addEventListener("click", function() {
+              const randomColor = "#" + Math.floor(Math.random()*16000000).toString(16); //genera colores aleatorios
+              
+              box.style.backgroundColor = randomColor; // cambia el color de la caja
+              
+              document.querySelector('body').style.background = randomColor; //cambia el color de fondo
+          });
+      });
+  });
+</script>
+
+
+</body>
+</html>

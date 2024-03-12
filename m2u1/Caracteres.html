@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CAMBIO DE COLOR DE FONDO</title>
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/styles.css">
+<style>
+    body {
+        font-family: "Open Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;  
+        margin:20px;
+        padding: 0;
+          /* Generado con https://cssgenerator.org  + https://coolors.co/ */
+        background: #d6a6ff;
+        background: linear-gradient(336deg,#d6a6ff 0%, #abe3ff 80%);
+        background: -webkit-linear-gradient(336deg,#d6a6ff 0%, #abe3ff 80%);
+        background: -moz-linear-gradient(336deg,#d6a6ff 0%, #abe3ff 80%);
+        color: #546577;
+        min-height: 100%;
+    }
+
+    h1 {
+        color: #505050;
+    }
+
+  .contenedor {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+ 
+</style>
+</head>
+<body>
+  <div class="contenedor">
+    <h1 class="display-5 fw-bold text-body-emphasis">Contador de Caracteres</h1> 
+    <textarea id="texto" rows="4" cols="50" onkeyup="contarCaracteres()"></textarea>
+    <p>Caracteres restantes: <span id="contador">100</span></p>
+</div>
+<footer>Powered by <a href="https://www.andresyaz.com.ar"> AndresYaz</a></footer>
+
+<script>
+    function contarCaracteres() {
+        var maxCaracteres = 100;
+        var texto = document.getElementById("texto").value; //toma el contenido del texto
+        var longitud = texto.length; // guarda la cantidad de caracteres
+        var caracteresRestantes = maxCaracteres - longitud;
+
+        document.getElementById("contador").innerHTML = caracteresRestantes;
+    }
+</script>
+
+</body>
+</html>
