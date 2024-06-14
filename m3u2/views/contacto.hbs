@@ -1,0 +1,23 @@
+
+<form action="/contacto" method="post" class="formulario">
+    <p>
+        <label for="nombre">Nombre</label>
+        <input type="text" name="nombre" id="nombre">
+    </p>
+        <p>
+        <label for="nombre">Email</label>
+        <input type="text" name="email" id="email">
+    </p>
+        <p>
+        <label for="tel">Telefono</label>
+        <input type="text" name="tel" id="tel">
+    </p>
+     <p>
+        <label for="mensaje">Mensaje</label>
+        <input type="text" name="mensaje" id="message">
+    </p>
+     <p class="acciones">
+        <input type="submit" value="Enviar">
+        {{message}}
+    </p>
+</form>
