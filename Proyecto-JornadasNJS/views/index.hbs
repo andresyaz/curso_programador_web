@@ -350,7 +350,7 @@
     </section><!-- End Venue Section -->
 
 
-     <!-- ======= Buy Ticket Section ======= -->
+     <!-- ======= INSCRIPCIONES  Section ======= -->
      <section id="buy-tickets" class="section-with-bg">
       <div class="container" data-aos="fade-up">
 
@@ -377,24 +377,27 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form method="POST" action="#">
+              <form method="POST" action="/inscripciones">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="your-name" placeholder="Nombre">
+                  <input type="text" class="form-control" name="nameI" placeholder="Nombre">
                 </div>
                 <div class="form-group mt-3">
-                  <input type="text" class="form-control" name="your-email" placeholder="Email">
+                  <input type="text" class="form-control" name="emailI" placeholder="Email">
                 </div>
                 
                 <div class="form-group mt-3">
-                  <select id="ticket-type" name="ticket-type" class="form-select">
+                  <select id="ticket-type" name="typeI" class="form-select">
                     <option value="">-- Seleccione el tipo de inscripcion --</option>
-                    <option value="standard-access">Participante</option>
-                    <option value="pro-access">Expositor</option>
-                    <option value="premium-access">Organizador</option>
+                    <option value="3">Participante</option>
+                    <option value="2">Expositor</option>
+                    <option value="1">Organizador</option>
                   </select>
                 </div>
                 <div class="text-center mt-3">
                   <button type="submit" class="btn">Inscribirse Ahora</button>
+                  {{#if error}}  
+                  <p style="color: red;">{{error}}</p>
+                  {{/if}}
                 </div>
               </form>
             </div>
@@ -596,10 +599,10 @@ realizadas en las diferentes regionales de la UTN y otras universidades nacional
           <p>Para estar informado de las ultimas novedades de las Jornadas.</p>
         </div>
 
-        <form method="POST" action="#">
+        <form method="post" action="/suscripciones">
           <div class="row justify-content-center">
             <div class="col-lg-6 col-md-10 d-flex">
-              <input type="text" class="form-control" placeholder="Ingrese su Email" name="emailSuscriptor">
+              <input type="text" class="form-control" placeholder="Ingrese su Email" name="email">
               <button type="submit" class="ms-2">Subscribirse</button>
             </div>
           </div>

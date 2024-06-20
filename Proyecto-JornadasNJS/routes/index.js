@@ -9,8 +9,7 @@ router.get('/', function(req, res, next) {
 
 /* FORMULARIO DE CONTACTO */
 
-router.post('/', async (req, res, next) => { //funcion asincronica
-
+router.post('/', async (req, res, next) => { 
   console.log(req.body.name);
   
   var name = req.body.name;
@@ -25,7 +24,6 @@ router.post('/', async (req, res, next) => { //funcion asincronica
     '<br> nos envia el siguiente mensaje: <br> '+ message,
 
   } // cierra el obj
-
   var transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
     port: process.env.SMTP_PORT,
@@ -34,18 +32,11 @@ router.post('/', async (req, res, next) => { //funcion asincronica
       pass: process.env.SMTP_PASS
     }
   }) // cierrael transporter
-
   var info = await transporter.sendMail(obj);
-
   res.render('index',{
     messageOK:'Mensaje enviado correctamente!',
   });
 
-
-
 });
-
-
-
 
 module.exports = router;

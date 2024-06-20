@@ -1,15 +1,25 @@
 var pool = require('./bd');
-var md5 = require('md5');
 
-async function getUserAndPassword(user, password) {
+/* OPERACIONES CRUD de tabla INSCRIPTOS */
+ 
+async function getInscriptos() {
+    var query = 'select * from inscriptos order by idInscripto desc';
+    var rows = await pool.query(query);
+    return rows;
+}
+
+// INSERTAR inscripto 
+async function insertarInscripto(obj) {
     try {
-        var query = 'select * from inscriptos';
-        var rows = await pool.query(query, [user, md5(password)]);
-        return rows[0];
-
+        var query = 'insert into inscriptos set ?'; //recibe un array
+        var rows = await pool.query(query, [obj]);
+        return rows;
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        throw error;
     }
 }
 
-module.exports = { getUserAndPassword }
+ 
+
+module.exports = { getInscriptos, insertarInscripto }

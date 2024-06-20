@@ -1,0 +1,57 @@
+
+<header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mx-4 border-bottom">
+      <div class="col-md-3 mb-2 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+           <span>Vista de Suscriptores</span>
+             <a href="/admin/main" class="mx-2">Inicio </a> 
+        </a>
+      </div>
+      <div class="col-md-3 text-end">
+    <a href="/admin/login/logout" class="btn btn-danger">Cerrar Sesion <i class="fa fa-sign-out-alt"></i></a>
+      </div>
+</header>
+
+
+
+<div class="container" >
+    <div class="row">
+        <div class="col">
+            <p class="text-end">
+            <h5>Listado de Suscriptores</h5>
+            <a href="/admin/suscriptores/agregarSuscriptor" class="btn btn-success">Nueva Suscripcion <i class="fa fa-plus"></i></a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container my-3 w-60">
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                      
+                        <th scope="col">Email</th>
+                        
+                         <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each inscriptos}}
+                    <tr>
+                        <th scope="row">{{idSuscriptor}}</th>
+                        
+                        <td>{{email}}</td>
+                        
+                        <td>
+                            <a href="/admin/inscriptos/modificar/{{idSuscriptor}}" class="btn btn-sm btn-secondary"><i class="fa fa-pencil"></i></a>
+                            <a href="/admin/inscriptos/eliminar/{{idSuscriptor}}" class="btn btn-sm btn-secondary"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
