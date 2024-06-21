@@ -14,39 +14,33 @@ router.get('/', async function (req, res, next) {
   });
 
 
-  /* Borrar Usuario */
+  /* Borrar Inscrito */
 router.get('/eliminar/:id', async (req, res, next) => {
     var id = req.params.id;
     await inscriptosModel.deleteinscriptosById(id);
     res.redirect('/admin/inscriptos')
 });
 
-/* Ver la pagina Agregar Usuario */
-router.get('/agregarinscriptos', async (req, res, next) => {
-    res.render('admin/agregarinscriptos', { // agregar.hbs
-        layout: 'admin/layout'
-    })  
-});//cierra Get
 
 /* Operaciones de Agregar datos con validacion  */
 router.post('/agregar', async (req, res, next) => {
     try {
-        //console.log(req.body);
+    
         if (req.body.nameI != "" && req.body.emailI != "") {
             await inscriptosModel.insertarinscripto(req.body);
             
             res.redirect('/admin/inscriptos')
         } else {
-            res.render('admin/agregarinscriptos', {
-                layout: 'admin/layout',
+            res.render('admin/inscriptos', {
+                
                 error: true,
                 message: 'Todos los campos son requeridos'
             })
         }
     } catch (error) {
         console.log(error);
-        res.render('admin/agregarinscriptos', {
-            layout: 'admin/layout',
+        res.render('admin/inscriptos', {
+          
             error: true,
             message: 'No se cargo el usuario'
         })

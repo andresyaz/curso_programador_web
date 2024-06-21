@@ -2,62 +2,49 @@ const express = require('express');
 const router = express.Router();
 const suscriptoresModel = require('./../../models/suscriptoresModel');
 
-/* GET suscriptores page. */
+/* GET suscriptores page. Listar en pagina suscriptores */
 router.get('/', async function (req, res, next) {
- 
     var suscriptores = await suscriptoresModel.getSuscriptores(); 
- 
     res.render('admin/suscriptores', {
       layout: 'admin/layout',
-      //suscriptor:req.session.email,
       suscriptores
     });
-  });
-
-
-  /* Borrar Usuario */
-router.get('/eliminar/:id', async (req, res, next) => {
-    var id = req.params.id;
-    await suscriptoresModel.deleteSuscriptoresById(id);
-    res.redirect('/admin/suscriptores')
 });
 
-/* Ver la pagina Agregar Usuario */
-router.get('/agregarSuscriptores', async (req, res, next) => {
-    res.render('admin/agregarSuscriptores', { // agregar.hbs
-        layout: 'admin/layout'
-    })  
-});//cierra Get
+ /* Borrar Suscriptor */
+router.get('/eliminar/:idSuscriptor', async (req, res, next) => {
+    var idSuscriptor = req.params.idSuscriptor;
+    await suscriptoresModel.deleteSuscriptorById(idSuscriptor);
+    res.redirect('/admin/suscriptores')
+});
 
 /* Operaciones de Agregar datos con validacion  */
 router.post('/agregar', async (req, res, next) => {
     try {
         //console.log(req.body);
-        if (req.body.user != "" && req.body.password != "") {
+        if (req.body.Email != "") {
             await suscriptoresModel.insertarSuscriptor(req.body);
-            
             res.redirect('/admin/suscriptores')
         } else {
-            res.render('admin/agregarSuscriptores', {
+            res.render('/admin/suscriptores', {
                 layout: 'admin/layout',
                 error: true,
                 message: 'Todos los campos son requeridos'
             })
         }
     } catch (error) {
-        console.log(error);
-        res.render('admin/agregarSuscriptores', {
+          res.render('admin/suscriptores', {
             layout: 'admin/layout',
             error: true,
             message: 'No se cargo el usuario'
         })
     }
-});//cierra Get
+});
 
 /* ver la pagina Modificar*/
-router.get('/modificar/:id', async (req, res, next) => {
-    let id = req.params.id;
-    let suscriptor = await suscriptoresModel.getSuscriptorById(id);   
+router.get('/modificar/:idSuscriptor', async (req, res, next) => {
+    let idSuscriptor = req.params.idSuscriptor;
+    let suscriptor = await suscriptoresModel.getSuscriptorById(idSuscriptor);   
     res.render('admin/modificarSuscriptor', { // modificarUsuario.hbs
         layout: 'admin/layout',
         suscriptor
@@ -84,7 +71,6 @@ router.post('/modificar', async (req, res, next) => {
             message: 'No se modifico el suscriptor'
         })
     }
-});//cierra Get
-
+});
   
 module.exports = router;

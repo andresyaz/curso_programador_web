@@ -22,12 +22,12 @@ router.get('/eliminar/:id', async (req, res, next) => {
     res.redirect('/admin/usuarios')
 });
 
-/* Ver la pagina Agregar Usuario */
+/* Ver la pagina Agregar Usuario  
 router.get('/agregarUsuario', async (req, res, next) => {
     res.render('admin/agregarUsuario', { // agregar.hbs
         layout: 'admin/layout'
     })  
-});//cierra Get
+});*/
 
 /* Operaciones de Agregar datos con validacion  */
 router.post('/agregar', async (req, res, next) => {
@@ -35,40 +35,50 @@ router.post('/agregar', async (req, res, next) => {
         //console.log(req.body);
         if (req.body.user != "" && req.body.password != "") {
             await usuariosModel.insertarUsuario(req.body);
-            
             res.redirect('/admin/usuarios')
         } else {
-            res.render('admin/agregarUsuario', {
-                layout: 'admin/layout',
+            res.render('admin/usuarios', {
                 error: true,
                 message: 'Todos los campos son requeridos'
             })
         }
     } catch (error) {
         console.log(error);
-        res.render('admin/agregarUsuario', {
-            layout: 'admin/layout',
+        res.render('admin/usuarios', {
             error: true,
             message: 'No se cargo el usuario'
         })
     }
-});//cierra Get
+});
 
-/* ver la pagina Modificar*/
+
+
+
+/* busca datos a modificar*/
 router.get('/modificar/:id', async (req, res, next) => {
     let id = req.params.id;
     let usuario = await usuariosModel.getUsuarioById(id);   
-    console.log(usuario);
+ 
+// enviar datos a la vista
+ 
     res.render('admin/modificarUsuario', { // modificarUsuario.hbs
-        //layout: 'admin/layout',
+        layout: 'admin/layout',
         usuario
-    })  
+    });  
+ 
+/*para cargar en el modal de modificar
+      res.render('admin/usuarios', {
+      layout: 'admin/layout',
+      usuario
+    });
+      */
+
 }); 
 
 /* Accion modificar*/
 router.post('/modificar', async (req, res, next) => {
     try {
-        console.log('datos de modificar: '+ req.body);
+      
         let obj = {
             user: req.body.user,
             password: req.body.password
@@ -81,11 +91,9 @@ router.post('/modificar', async (req, res, next) => {
         console.log(error);
         res.render('admin/modificarUsuario', {
             layout: 'admin/layout',
-            error: true,
-            message: 'No se modifico el usuario'
-        })
+            error: true, message: 'No se modifico el usuario'
+        });
     }
 });//cierra Get
-
   
 module.exports = router;

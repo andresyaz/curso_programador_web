@@ -28,18 +28,18 @@ async function insertarSuscriptor(obj) {
 
 // MODIFICAR SUSCRIPTOR
 //obtener sucriptor
-async function getSuscriptorById(id) {
-    
-        var query = 'select * from suscriptores where idSuscriptor= ?'; 
-        var rows = await pool.query(query, [idSuscriptor]);
-        return rows[0];
-    
+async function getSuscriptorById(idSuscriptor) {
+
+    var query = 'select * from suscriptores where idSuscriptor= ?';
+    var rows = await pool.query(query, [idSuscriptor]);
+    return rows[0];
+
 }
 //modificarlo
 async function modificarSuscriptorById(obj, idSuscriptor) {
     try {
-        var query = 'update suscriptores set ? where id = ?'; 
-        var rows = await pool.query(query, [obj], idSuscriptor);
+        var query = 'update suscriptores set ? where idSuscriptor = ?';
+        var rows = await pool.query(query, [obj, idSuscriptor]);
         return rows;
     } catch (error) {
         console.log(error)

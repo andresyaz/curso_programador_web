@@ -18,15 +18,12 @@ var loginRouter = require('./routes/admin/login');
 var mainRouter = require('./routes/admin/main');
 
 var usuariosRouter = require('./routes/admin/usuarios');
- 
 var modificarUsuarioRouter = require('./routes/admin/usuarios');
 
 var inscriptosRouter = require('./routes/admin/inscriptos');
-var agregarInscriptoRouter = require('./routes/admin/usuarios');
 var modificarInscriptoRouter = require('./routes/admin/usuarios');
  
 var suscriptoresRouter = require('./routes/admin/suscriptores');
-var agregarSuscriptorRouter = require('./routes/admin/usuarios');
 var modificarSuscriptorRouter = require('./routes/admin/usuarios');
 
 var app = express();
@@ -66,7 +63,6 @@ app.use('/', indexRouter);
 app.use('/inscripciones', inscripcionesRouter);
 app.use('/suscripciones', suscripcionesRouter);
 
-
 app.use('/users', usersRouter);
 
 app.use('/admin/login', loginRouter); //llama al admin/login.js
@@ -76,11 +72,9 @@ app.use('/admin/usuarios', secured, usuariosRouter);
 app.use('/admin/modificarUsuario', secured, modificarUsuarioRouter);
 
 app.use('/admin/inscriptos', secured, inscriptosRouter);
-app.use('/admin/agregarInscripto', secured, agregarInscriptoRouter);
 app.use('/admin/modificarInscripto', secured, modificarInscriptoRouter);
 
 app.use('/admin/suscriptores', secured, suscriptoresRouter);
-app.use('/admin/agregarSuscriptor', secured, agregarSuscriptorRouter);
 app.use('/admin/modificarSuscriptor', secured, modificarSuscriptorRouter);
  
 

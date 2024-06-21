@@ -52,10 +52,10 @@ async function getUsuarioById(id) {
 async function modificarUsuarioById(obj, id) {
     try {
         var query = 'update usuarios set ? where id = ?'; 
-        var rows = await pool.query(query, [obj], id);
+        var rows = await pool.query(query, [obj, id]);
         return rows;
     } catch (error) {
-        console.log(error)
+       throw(error)
     }
 }
 

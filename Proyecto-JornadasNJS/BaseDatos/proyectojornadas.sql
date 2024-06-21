@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 18, 2024 at 02:07 AM
+-- Generation Time: Jun 21, 2024 at 09:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -31,15 +31,22 @@ CREATE TABLE `inscriptos` (
   `idInscripto` int(11) NOT NULL,
   `nombre` varchar(80) NOT NULL,
   `email` varchar(80) NOT NULL,
-  `tipo` int(11) NOT NULL
+  `tipo` varchar(255) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `inscriptos`
 --
 
-INSERT INTO `inscriptos` (`idInscripto`, `nombre`, `email`, `tipo`) VALUES
-(1, 'andres', 'andresyaz@frbb.utn.edu.ar', 1);
+INSERT INTO `inscriptos` (`idInscripto`, `nombre`, `email`, `tipo`, `fecha`) VALUES
+(1, 'andres', 'andresyaz@frbb.utn.edu.ar', 'Organizador', '2024-06-21 17:01:09'),
+(2, 'mariana', 'mari@gmail.com', 'Expositor', '2024-06-21 17:01:09'),
+(3, 'mariana', 'mari@gmail.com', 'Participante', '2024-06-21 17:01:09'),
+(5, 'Flavia', 'Ursino', 'Expositor', '2024-06-21 17:01:09'),
+(6, 'Rosario', 'ro@gmail.com', 'Expositor', '2024-06-21 17:01:09'),
+(7, 'Martin', 'Lopez', 'Organizador', '2024-06-21 17:01:09'),
+(8, 'Martin', 'mari@gmail.com', 'Participante', '2024-06-21 18:59:43');
 
 -- --------------------------------------------------------
 
@@ -59,7 +66,10 @@ CREATE TABLE `suscriptores` (
 INSERT INTO `suscriptores` (`idSuscriptor`, `Email`) VALUES
 (1, 'andresyaz@gmail.com'),
 (5, 'juan@generico.com'),
-(6, 'ana@generico.com');
+(6, 'ana@generico.com'),
+(7, 'a1@gmail.com'),
+(8, 'andresyaz@gmail.com'),
+(9, 'norma@jj.com');
 
 -- --------------------------------------------------------
 
@@ -80,7 +90,13 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `user`, `password`, `level`) VALUES
 (1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(2, 'andres', '81dc9bdb52d04dc20036dbd8313ed055', 1);
+(2, 'andres', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(3, 'juan', '1234', 0),
+(6, 'nouz', '1234', 0),
+(7, 'mariana', '1234', 0),
+(8, 'Flavia Ursino', '1234', 0),
+(10, 'Juan Kaiser', '1234', 0),
+(12, 'nouz4', '1234', 0);
 
 --
 -- Indexes for dumped tables
@@ -112,19 +128,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `inscriptos`
 --
 ALTER TABLE `inscriptos`
-  MODIFY `idInscripto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idInscripto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `suscriptores`
 --
 ALTER TABLE `suscriptores`
-  MODIFY `idSuscriptor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idSuscriptor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -44,9 +44,8 @@
                         <th scope="row">{{id}}</th>
                         <td>{{user}}</td>
                         <td>
-                          <a href="/admin/usuarios/modificar/{{id}}" class="btn btn-sm btn-secondary"><i class="fa fa-pencil"></i></a>
-      
-                            <!--a href="/admin/usuarios/modificar/{{id}}" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal"><i class="fa fa-pencil"></i></a-->
+                            <a href="/admin/usuarios/modificar/{{id}}" class="btn btn-sm btn-secondary"><i class="fa fa-pencil"></i></a>
+                            <!--a href="/admin/usuarios/modificar/{{id}}" class="btn btn-sm btn-secondary btnmodificar" data-bs-toggle="modal" data-bs-target="#modificarUsuarioModal"><i class="fa fa-pencil"></i></a-->
                             <a href="/admin/usuarios/eliminar/{{id}}" class="btn btn-sm btn-secondary"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
@@ -57,10 +56,13 @@
     </div>
 </div>
 
- 
+
+
+
 
 <!-- Modal Agregar Nuevo -->
-<div class="modal fade" id="agregarUsuarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="agregarUsuarioModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -68,23 +70,22 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       
-       <section class="my-4 m-auto p-3">
- 
-<form action="/admin/usuarios/agregar" method="post">
 
-    <div class="form-group my-2">
-        <input type="text" class="form-control" placeholder="Usuario" name="user">
-    </div>
-    <div class="form-group my-2">
-        <input type="text" class="form-control" placeholder="Contraseña" name="password">
-    </div>
-    <button type="submit" class="btn btn-primary my-2">Guardar</button>
-    {{#if error}}
-        <p> {{message}} </p>
-    {{/if}}
-</form>
-</section>
+        <section class="my-4 m-auto p-3">
+
+          <form action="/admin/usuarios/agregar" method="post">
+            <div class="form-group my-2">
+              <input type="text" class="form-control" placeholder="Usuario" name="user">
+            </div>
+            <div class="form-group my-2">
+              <input type="text" class="form-control" placeholder="Contraseña" name="password">
+            </div>
+            <button type="submit" class="btn btn-primary my-2">Guardar</button>
+            {{#if error}}
+            <p> {{message}} </p>
+            {{/if}}
+          </form>
+        </section>
 
 
       </div>
