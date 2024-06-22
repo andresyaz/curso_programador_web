@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 21, 2024 at 09:18 PM
+-- Generation Time: Jun 22, 2024 at 03:31 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -43,10 +43,9 @@ INSERT INTO `inscriptos` (`idInscripto`, `nombre`, `email`, `tipo`, `fecha`) VAL
 (1, 'andres', 'andresyaz@frbb.utn.edu.ar', 'Organizador', '2024-06-21 17:01:09'),
 (2, 'mariana', 'mari@gmail.com', 'Expositor', '2024-06-21 17:01:09'),
 (3, 'mariana', 'mari@gmail.com', 'Participante', '2024-06-21 17:01:09'),
-(5, 'Flavia', 'Ursino', 'Expositor', '2024-06-21 17:01:09'),
 (6, 'Rosario', 'ro@gmail.com', 'Expositor', '2024-06-21 17:01:09'),
-(7, 'Martin', 'Lopez', 'Organizador', '2024-06-21 17:01:09'),
-(8, 'Martin', 'mari@gmail.com', 'Participante', '2024-06-21 18:59:43');
+(7, 'Martin', 'Lopez', 'Participante', '2024-06-21 17:01:09'),
+(8, 'Martin', 'mari@gmail.com', 'Expositor', '2024-06-21 18:59:43');
 
 -- --------------------------------------------------------
 
@@ -69,7 +68,9 @@ INSERT INTO `suscriptores` (`idSuscriptor`, `Email`) VALUES
 (6, 'ana@generico.com'),
 (7, 'a1@gmail.com'),
 (8, 'andresyaz@gmail.com'),
-(9, 'norma@jj.com');
+(10, 'alicia@yahoo.com.ar'),
+(11, 'pepe@gmail.com'),
+(12, 'juan@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -91,12 +92,9 @@ CREATE TABLE `usuarios` (
 INSERT INTO `usuarios` (`id`, `user`, `password`, `level`) VALUES
 (1, 'admin', '81dc9bdb52d04dc20036dbd8313ed055', 1),
 (2, 'andres', '81dc9bdb52d04dc20036dbd8313ed055', 1),
-(3, 'juan', '1234', 0),
-(6, 'nouz', '1234', 0),
-(7, 'mariana', '1234', 0),
-(8, 'Flavia Ursino', '1234', 0),
-(10, 'Juan Kaiser', '1234', 0),
-(12, 'nouz4', '1234', 0);
+(12, 'nouz8', '2e99bf4e42962410038bc6fa4ce40d97', 0),
+(13, 'Juan', '81dc9bdb52d04dc20036dbd8313ed055', 1),
+(14, 'AndresYaz', 'd9b1d7db4cd6e70935368a1efb10e377', 1);
 
 --
 -- Indexes for dumped tables
@@ -134,13 +132,13 @@ ALTER TABLE `inscriptos`
 -- AUTO_INCREMENT for table `suscriptores`
 --
 ALTER TABLE `suscriptores`
-  MODIFY `idSuscriptor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idSuscriptor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

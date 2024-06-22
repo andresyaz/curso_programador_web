@@ -17,7 +17,7 @@ router.get('/', async function (req, res, next) {
   /* Borrar Inscrito */
 router.get('/eliminar/:id', async (req, res, next) => {
     var id = req.params.id;
-    await inscriptosModel.deleteinscriptosById(id);
+    await inscriptosModel.deleteInscriptoById(id);
     res.redirect('/admin/inscriptos')
 });
 
@@ -27,20 +27,21 @@ router.post('/agregar', async (req, res, next) => {
     try {
     
         if (req.body.nameI != "" && req.body.emailI != "") {
-            await inscriptosModel.insertarinscripto(req.body);
+            await inscriptosModel.insertarInscripto(req.body);
             
-            res.redirect('/admin/inscriptos')
+            res.redirect('/admin/inscriptos');
+
         } else {
             res.render('admin/inscriptos', {
-                
+                layout: 'admin/layout',
                 error: true,
                 message: 'Todos los campos son requeridos'
-            })
+            });
         }
     } catch (error) {
         console.log(error);
         res.render('admin/inscriptos', {
-          
+            layout: 'admin/layout',
             error: true,
             message: 'No se cargo el usuario'
         })
@@ -48,10 +49,10 @@ router.post('/agregar', async (req, res, next) => {
 });//cierra Get
 
 /* ver la pagina Modificar*/
-router.get('/modificar/:id', async (req, res, next) => {
-    let id = req.params.id;
-    let inscripto = await inscriptosModel.getinscriptoById(id);   
-    res.render('admin/modificarinscripto', { // modificarUsuario.hbs
+router.get('/modificar/:idInscripto', async (req, res, next) => {
+    let idInscripto = req.params.idInscripto;
+    let inscripto = await inscriptosModel.getInscriptoById(idInscripto);   
+    res.render('admin/modificarInscripto', { // modificarUsuario.hbs
         layout: 'admin/layout',
         inscripto
     })  
@@ -62,11 +63,12 @@ router.post('/modificar', async (req, res, next) => {
     try {
         //console.log(req.body);
         let obj = {
-            email: req.body.user,
-           
+            nombre: req.body.nameI,
+            email: req.body.emailI,
+            tipo: req.body.typeI
         }
 
-        await inscriptosModel.modificarInscriptoById(obj, req.body.id);
+        await inscriptosModel.modificarInscriptoById(obj, req.body.idInscripto);
         res.redirect('/admin/inscriptos');
 
     } catch (error) {

@@ -16,7 +16,7 @@ router.post('/', async (req, res, next) => {
     var usuario = req.body.user;
     var password = req.body.password;
 
-    console.log(req.body);
+   // console.log(req.body);
 
     //los busca en la base de datos
     var data = await usuariosModel.getUserAndPassword(usuario, password);

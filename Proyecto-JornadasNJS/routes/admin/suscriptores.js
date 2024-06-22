@@ -54,13 +54,13 @@ router.get('/modificar/:idSuscriptor', async (req, res, next) => {
 /* Accion modificar*/
 router.post('/modificar', async (req, res, next) => {
     try {
-        //console.log(req.body);
+       
         let obj = {
-            email: req.body.user,
+            email: req.body.email,
            
         }
 
-        await suscriptoresModel.modificarSuscriptorById(obj, req.body.id);
+        await suscriptoresModel.modificarSuscriptorById(obj, req.body.idSuscriptor);
         res.redirect('/admin/suscriptores');
 
     } catch (error) {

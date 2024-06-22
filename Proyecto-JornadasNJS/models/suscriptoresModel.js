@@ -1,50 +1,71 @@
-var pool = require('./bd');
+const pool = require('./bd');
 
 /* OPERACIONES CRUD de tabla SUSCRIPTORES */
 
-// LISTAR SUSCRIPTOR 
+// LISTAR SUSCRIPTORES
 async function getSuscriptores() {
-    var query = 'select * from suscriptores order by idSuscriptor desc';
-    var rows = await pool.query(query);
-    return rows;
+    try {
+        const query = 'SELECT * FROM suscriptores ORDER BY idSuscriptor DESC';
+        const rows = await pool.query(query);
+        return rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
+
 // BORRAR SUSCRIPTOR
 async function deleteSuscriptorById(idSuscriptor) {
-    var query = 'delete from suscriptores where idSuscriptor = ? ';
-    var rows = await pool.query(query, [idSuscriptor]);
-    return rows;
+    try {
+        const query = 'DELETE FROM suscriptores WHERE idSuscriptor = ?';
+        const rows = await pool.query(query, [idSuscriptor]);
+        return rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
 
 // INSERTAR SUSCRIPTOR
 async function insertarSuscriptor(obj) {
     try {
-        var query = 'insert into suscriptores set ?'; //recibe un array
-        var rows = await pool.query(query, [obj]);
+        const query = 'INSERT INTO suscriptores SET ?'; // Recibe un objeto
+        const rows = await pool.query(query, [obj]);
         return rows;
     } catch (error) {
-        console.log(error)
+        console.error(error);
+        throw error;
     }
 }
 
-// MODIFICAR SUSCRIPTOR
-//obtener sucriptor
+// OBTENER SUSCRIPTOR POR ID
 async function getSuscriptorById(idSuscriptor) {
-
-    var query = 'select * from suscriptores where idSuscriptor= ?';
-    var rows = await pool.query(query, [idSuscriptor]);
-    return rows[0];
-
+    try {
+        const query = 'SELECT * FROM suscriptores WHERE idSuscriptor = ?';
+        const rows = await pool.query(query, [idSuscriptor]);
+        return rows[0];
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
 }
-//modificarlo
+
+// MODIFICAR SUSCRIPTOR POR ID
 async function modificarSuscriptorById(obj, idSuscriptor) {
     try {
-        var query = 'update suscriptores set ? where idSuscriptor = ?';
-        var rows = await pool.query(query, [obj, idSuscriptor]);
+        const query = 'UPDATE suscriptores SET ? WHERE idSuscriptor = ?';
+        const rows = await pool.query(query, [obj, idSuscriptor]);
         return rows;
     } catch (error) {
-        console.log(error)
+        console.error(error);
+        throw error;
     }
 }
 
-
-module.exports = { getSuscriptores, deleteSuscriptorById, insertarSuscriptor, getSuscriptorById, modificarSuscriptorById }
+module.exports = {
+    getSuscriptores,
+    deleteSuscriptorById,
+    insertarSuscriptor,
+    getSuscriptorById,
+    modificarSuscriptorById
+};

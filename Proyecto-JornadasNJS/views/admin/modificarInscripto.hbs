@@ -1,0 +1,28 @@
+<h1>Modificar Inscripto</h1>
+<form action="/admin/inscriptos/modificar" method="post">
+    <input type="hidden" value="{{inscripto.idInscripto}}" name="idInscripto">
+
+
+    <div class="form-group">
+        <input type="text" class="form-control" name="nameI" placeholder="Nombre" value="{{inscripto.nombre}}">
+    </div>
+    <div class="form-group mt-3">
+        <input type="text" class="form-control" name="emailI" placeholder="Email" value="{{inscripto.email}}">
+    </div>
+    <div class="form-group mt-3">
+    <p>Valor Actual: {{inscripto.tipo}} </p>
+     
+        <select id="ticket-type" name="typeI" class="form-select">
+            <option disabled selected>-- Seleccione el tipo de inscripcion --</option>
+            <option value="Participante">Participante</option>
+            <option value="Expositor">Expositor</option>
+            <option value="Organizador">Organizador</option>
+        </select>
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Modificar</button>
+    {{#if error}}
+    <h5> {{message}} </h5>
+    {{/if}}
+</form>

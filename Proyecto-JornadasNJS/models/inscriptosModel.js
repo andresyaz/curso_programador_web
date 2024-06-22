@@ -1,54 +1,66 @@
-var pool = require('./bd');
+const pool = require('./bd');
 
 /* OPERACIONES CRUD de tabla INSCRIPTOS */
 
+// Obtener todos los inscriptos
 async function getInscriptos() {
-    var query = 'select * from inscriptos order by idInscripto desc';
-    var rows = await pool.query(query);
-    return rows;
-}
-
-// INSERTAR inscripto 
-async function insertarInscripto(obj) {
     try {
-        var query = 'insert into inscriptos set ?'; //recibe un array
-        obj.fecha = new Date(); // Agrega la fecha actual al objeto
-        var rows = await pool.query(query, [obj]);
+        const query = 'SELECT * FROM inscriptos ORDER BY idInscripto DESC';
+        const rows = await pool.query(query);
         return rows;
     } catch (error) {
-        console.log(error);
+        console.error(error);
         throw error;
     }
 }
 
-// BORRAR USUARIO
-async function deleteInscriptoById(id) {
-    var query = 'delete from inscriptos where idInscripto= ? ';
-    var rows = await pool.query(query, [id]);
-    return rows;
-}
-
-
-// MODIFICAR USUARIO
-//obtener usuario
-async function getInscriptoById(id) {
-
-    var query = 'select * from usuarios where idInscripto= ?';
-    var rows = await pool.query(query, [idInscripto]);
-    return rows[0];
-
-}
-//modificarlo
-async function modificarInscriptoById(obj, idInscripto) {
+// Insertar inscripto
+async function insertarInscripto(obj) {
     try {
-        var query = 'update inscriptos set ? where idInscripto= ?';
-        var rows = await pool.query(query, [obj, idInscripto]);
+        const query = 'INSERT INTO inscriptos SET ?'; // Recibe un objeto
+        obj.fecha = new Date().toISOString().slice(0, 19).replace('T', ' '); // Formatear la fecha adecuadamente
+        const rows = await pool.query(query, [obj]);
         return rows;
     } catch (error) {
-        throw (error)
+        console.error(error);
+        throw error;
     }
 }
 
+// Borrar inscripto por ID
+async function deleteInscriptoById(id) {
+    try {
+        const query = 'DELETE FROM inscriptos WHERE idInscripto = ?';
+        const rows = await pool.query(query, [id]);
+        return rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
+// Obtener inscripto por ID
+async function getInscriptoById(id) {
+    try {
+        const query = 'SELECT * FROM inscriptos WHERE idInscripto = ?';
+        const rows = await pool.query(query, [id]);
+        return rows[0];
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
 
-module.exports = { getInscriptos, insertarInscripto, deleteInscriptoById, getInscriptoById, modificarInscriptoById }
+// Modificar inscripto por ID
+async function modificarInscriptoById(obj, idInscripto) {
+    try {
+        const query = 'UPDATE inscriptos SET ? WHERE idInscripto = ?';
+        const rows = await pool.query(query, [obj, idInscripto]);
+        return rows;
+    } catch (error) {
+        console.error(error);
+        throw error;
+    }
+}
+
+module.exports = { getInscriptos, insertarInscripto, deleteInscriptoById, getInscriptoById, modificarInscriptoById };

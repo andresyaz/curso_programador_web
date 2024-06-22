@@ -1,0 +1,12 @@
+<h1>Modificar Suscriptor</h1>
+<form action="/admin/suscriptores/modificar" method="post">
+    <input type="hidden" value="{{suscriptor.idSuscriptor}}" name="idSuscriptor">
+   
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Email" name="email" value="{{suscriptor.Email}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Modificar</button>
+    {{#if error}}
+    <h5> {{message}} </h5>
+    {{/if}}
+</form>
