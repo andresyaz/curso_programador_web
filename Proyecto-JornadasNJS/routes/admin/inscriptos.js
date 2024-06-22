@@ -27,7 +27,14 @@ router.post('/agregar', async (req, res, next) => {
     try {
     
         if (req.body.nameI != "" && req.body.emailI != "") {
-            await inscriptosModel.insertarInscripto(req.body);
+
+            let obj = {
+                nombre: req.body.nameI,
+                email: req.body.emailI,
+                tipo: req.body.typeI
+            }
+
+            await inscriptosModel.insertarInscripto(obj);
             
             res.redirect('/admin/inscriptos');
 
